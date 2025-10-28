@@ -10,7 +10,8 @@ public class ConfigReader {
 
     public static void loadProperties() {
         try {
-            FileInputStream fis = new FileInputStream("/Users/shashikaranamukage/Documents/Code/OrangeHRM/OrangeHRM/src/test/java/resources/Data/config.properties");
+            //FileInputStream fis = new FileInputStream("/Users/shashikaranamukage/Documents/Code/OrangeHRM/OrangeHRM/src/test/java/resources/Data/config.properties");
+            FileInputStream fis = new FileInputStream("/src/test/java/resources/Data/config.properties");
             properties = new Properties();
             properties.load(fis);
         } catch (IOException e) {
