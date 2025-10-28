@@ -31,17 +31,28 @@ public class BaseTest {
     public void browserSetUp(){
         String browser = ConfigReader.getProperty("browser");
 
-        switch(browser.toLowerCase()){
+        switch(browser.toLowerCase()) {
             case "chrome":
-                WebDriverManager.chromedriver().setup();
-                // driver = new ChromeDriver();
-                ChromeOptions options = new ChromeOptions();
-                //options.addArguments("--headless=new");  // Use new headless mode (Chrome 109+)
-                options.addArguments("--no-sandbox");
-                options.addArguments("--disable-dev-shm-usage");
-                options.addArguments("--window-size=1920,1080");
-                driver = new ChromeDriver(options);
+                try {
+                    WebDriverManager.chromedriver().setup();
+                    // driver = new ChromeDriver();
+                    ChromeOptions options = new ChromeOptions();
+                    if (System.getenv("CI") != null) {
+                        //options.addArguments("--headless=new");  // Use new headless mode (Chrome 109+)
+                        options.addArguments("--no-sandbox");
+                        options.addArguments("--disable-dev-shm-usage");
+                    }
+                    options.addArguments("--window-size=1920,1080");
+                    driver = new ChromeDriver(options);
+                    System.out.println("✅ ChromeDriver initialized successfully");
+                } catch (Exception e) {
+                    System.out.println("❌ Error initializing ChromeDriver: " + e.getMessage());
+                    e.printStackTrace();
+                    throw e;
+                }
                 break;
+
+
 
             case "firefox" :
                 WebDriverManager.firefoxdriver().setup();
