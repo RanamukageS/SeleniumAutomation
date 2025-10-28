@@ -41,9 +41,10 @@ public class BaseTest {
                         //options.addArguments("--headless=new");  // Use new headless mode (Chrome 109+)
                         options.addArguments("--no-sandbox");
                         options.addArguments("--disable-dev-shm-usage");
+                        options.addArguments("--window-size=1920,1080");
+                        driver = new ChromeDriver(options);
                     }
-                    options.addArguments("--window-size=1920,1080");
-                    driver = new ChromeDriver(options);
+
                     System.out.println("✅ ChromeDriver initialized successfully");
                 } catch (Exception e) {
                     System.out.println("❌ Error initializing ChromeDriver: " + e.getMessage());
