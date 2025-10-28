@@ -41,11 +41,16 @@ public class BaseTest {
                         options.addArguments("--headless=new");
                         options.addArguments("--no-sandbox");
                         options.addArguments("--disable-dev-shm-usage");
+                        options.addArguments("--disable-gpu");
                         options.addArguments("--window-size=1920,1080");
+                        options.addArguments("--remote-allow-origins=*");
+                    }else{
+                        options.addArguments("--start-maximized");
                     }
 
                     // Initialize driver regardless of CI environment
                     driver = new ChromeDriver(options);
+                    driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
                     System.out.println("✅ ChromeDriver initialized successfully");
                 } catch (Exception e) {
                     System.out.println("❌ Error initializing ChromeDriver: " + e.getMessage());
