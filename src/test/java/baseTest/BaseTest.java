@@ -6,8 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 import pom.AdminPageObjects;
 import pom.LoginData;
 import pom.PIM;
@@ -27,9 +26,14 @@ public class BaseTest {
         return driver;
     }
 
-    @BeforeTest
+    @BeforeMethod(alwaysRun = true)
     public void browserSetUp() {
+        //String browser = ConfigReader.getProperty("browser");
+
         String browser = ConfigReader.getProperty("browser");
+        if (browser == null) {
+            browser = "chrome";
+        }
 
         switch(browser.toLowerCase()) {
             case "chrome":
@@ -44,8 +48,6 @@ public class BaseTest {
                         options.addArguments("--disable-gpu");
                         options.addArguments("--window-size=1920,1080");
                         options.addArguments("--remote-allow-origins=*");
-                    }else{
-                        options.addArguments("--start-maximized");
                     }
 
                     // Initialize driver regardless of CI environment
@@ -72,7 +74,9 @@ public class BaseTest {
                 throw new IllegalArgumentException("browser is not supported" + browser);
         }
 
-        driver.manage().window().maximize();
+        if (System.getenv("CI") == null) {
+            driver.manage().window().maximize();
+        }
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         
         String url = ConfigReader.getProperty("url");
@@ -92,7 +96,7 @@ public class BaseTest {
 
     }
 
-    @AfterTest
+    @AfterMethod(alwaysRun = true)
     public void browserClose() {
         if (driver != null) {
             driver.quit();

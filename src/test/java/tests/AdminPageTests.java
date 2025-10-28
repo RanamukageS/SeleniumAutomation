@@ -17,16 +17,6 @@ import java.util.concurrent.TimeUnit;
 @Listeners({utils.ExtentTestNGListner.class, utils.TestListner.class })
 public class AdminPageTests extends BaseTest {
 
-    //New
-    AdminPageObjects adminPageObjects;
-    LoginData loginData;
-    PIM pim;
-
-    @BeforeMethod
-    public void setup() {
-        adminPageObjects = new AdminPageObjects(driver);
-    }
-
 
     //@Test(retryAnalyzer = RetryAnalyzer.class)
     @Test
