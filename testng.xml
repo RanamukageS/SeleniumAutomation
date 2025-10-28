@@ -7,6 +7,12 @@
 <!--    <listeners>-->
 <!--        <listener class-name="utils.ExtentTestNGListener"/>-->
 <!--    </listeners>-->
+    <listeners>
+        <listener class-name="utils.TestListner" />
+    </listeners>
+    <listeners>
+        <listener class-name="utils.RetryAnalyzer" />
+    </listeners>
     <test name="SampleTest">
         <classes>
             <class name="tests.AdminPageTests"/>

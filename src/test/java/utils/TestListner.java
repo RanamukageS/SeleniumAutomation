@@ -1,15 +1,10 @@
 package utils;
 
 import baseTest.BaseTest;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
-import java.io.File;
-import java.io.IOException;
 
 public class TestListner extends BaseTest implements ITestListener {
     @Override
@@ -24,13 +19,9 @@ public class TestListner extends BaseTest implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        TakesScreenshot screenshot =(TakesScreenshot) driver;
-        File file = screenshot.getScreenshotAs(OutputType.FILE);
-        try{
-            FileUtils.copyFile((file),new File("/Users/shashikaranamukage/Documents/Code/OrangeHRM/OrangeHRM/test-output/Screenshot"));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        Object testClass = result.getInstance();
+        WebDriver driver = ((BaseTest) testClass).getDriver(); // Assumes BaseTest has getDriver()
+        ScreenshotUtil.captureScreenshot(driver, result.getName());
     }
 
     @Override
