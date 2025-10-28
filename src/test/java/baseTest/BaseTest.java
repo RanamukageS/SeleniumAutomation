@@ -12,6 +12,7 @@ import pom.AdminPageObjects;
 import pom.LoginData;
 import pom.PIM;
 import utils.ConfigReader;
+import utils.ScreenshotUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,23 +29,24 @@ public class BaseTest {
     }
 
     @BeforeTest
-    public void browserSetUp(){
+    public void browserSetUp() {
         String browser = ConfigReader.getProperty("browser");
 
         switch(browser.toLowerCase()) {
             case "chrome":
                 try {
                     WebDriverManager.chromedriver().setup();
-                    // driver = new ChromeDriver();
                     ChromeOptions options = new ChromeOptions();
+
                     if (System.getenv("CI") != null) {
-                        options.addArguments("--headless=new");  // Use new headless mode (Chrome 109+)
+                        options.addArguments("--headless=new");
                         options.addArguments("--no-sandbox");
                         options.addArguments("--disable-dev-shm-usage");
                         options.addArguments("--window-size=1920,1080");
-                        driver = new ChromeDriver(options);
                     }
 
+                    // Initialize driver regardless of CI environment
+                    driver = new ChromeDriver(options);
                     System.out.println("✅ ChromeDriver initialized successfully");
                 } catch (Exception e) {
                     System.out.println("❌ Error initializing ChromeDriver: " + e.getMessage());
@@ -68,6 +70,7 @@ public class BaseTest {
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        
         String url = ConfigReader.getProperty("url");
         driver.get(url);
 
