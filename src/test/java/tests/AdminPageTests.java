@@ -4,12 +4,13 @@ import baseTest.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-//@Listeners({utils.ExtentTestNGListner.class, utils.TestListner.class })
+@Listeners({utils.ExtentTestNGListner.class, utils.TestListner.class })
 public class AdminPageTests extends BaseTest {
 
     //@Test(retryAnalyzer = RetryAnalyzer.class)
@@ -95,6 +96,9 @@ public class AdminPageTests extends BaseTest {
         driver.manage().timeouts().implicitlyWait(400,TimeUnit.SECONDS);
         adminPageObjects.PostalCode();
     }
+
+
+
 }
 
 

@@ -1,6 +1,7 @@
 package pom;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -31,7 +32,7 @@ public class AdminPageObjects {
         driver.findElements(By.xpath("//div[@class = 'oxd-select-text-input']")).get(0).click();
     }
 
-    public void selectUserRole(){;
+    public void selectUserRole(){
        List<WebElement> ddEle = driver.findElements(By.xpath("//div[@class = 'oxd-select-text-input']"));
        if(!ddEle.isEmpty()){
            WebElement firstElement = ddEle.get(0);
@@ -142,8 +143,13 @@ public class AdminPageObjects {
         textbox.clear();
         driver.manage().timeouts().implicitlyWait(200,TimeUnit.SECONDS);
         textbox.sendKeys("22222");
-        driver.findElement(By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']")).click();
+       // driver.findElement(By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']")).click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0, 500);");
+        driver.findElement(By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[7]/button")).click();
+        driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
     }
+
 
 
 }
