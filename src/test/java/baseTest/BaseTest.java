@@ -12,7 +12,6 @@ import pom.AdminPageObjects;
 import pom.LoginData;
 import pom.PIM;
 import utils.ConfigReader;
-import utils.ScreenshotUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -89,8 +88,9 @@ public class BaseTest {
     }
 
     @AfterTest
-    public void browserClose(){
-      //driver.close();
+    public void browserClose() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
-
 }
