@@ -20,6 +20,13 @@ import java.util.Date;
                 String filePath = "screenshots/" + testName + "_" + timestamp + ".png";
 
                 try {
+
+                    // ✅ Ensure the screenshots directory exists
+                    File directory = new File("screenshots");
+                    if (!directory.exists()) {
+                        directory.mkdirs();
+                    }
+
                     FileUtils.copyFile(srcFile, new File(filePath));
                     System.out.println("📸 Screenshot saved to: " + filePath);
                 } catch (IOException e) {
