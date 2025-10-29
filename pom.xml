@@ -37,6 +37,12 @@
             <version>3.8.1</version>
         </dependency>
 
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-testng</artifactId>
+                <version>2.27.0</version>
+            </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -139,7 +145,11 @@
                 </compilerArgs>
             </configuration>
         </plugin>
-
+        <plugin>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>2.12.0</version>
+        </plugin>
     </plugins>
     </build>
 </project>
