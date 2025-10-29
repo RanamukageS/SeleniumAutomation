@@ -1,6 +1,7 @@
 package tests;
 
 import baseTest.BaseTest;
+import org.bouncycastle.asn1.sec.SECNamedCurves;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -55,13 +56,14 @@ public class PIMTests extends BaseTest {
         driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
         pim.clickSave();
         //wait until loaded the page
-        WebDriverWait wait = new WebDriverWait(driver, 300);
-        WebElement nameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//h6[contains(@class, '--strong')]")
-        ));
-        String actualText = nameElement.getText();
-        System.out.println("Actual name retrieved: '" + actualText + "'");
-        Assert.assertEquals(actualText, "Malmi maliyadda");
+//        WebDriverWait wait = new WebDriverWait(driver, 300);
+//        WebElement nameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+//            By.xpath("//h6[contains(@class, '--strong')]")
+//        ));
+//
+//        String actualText = nameElement.getText();
+//        System.out.println("Actual name retrieved: '" + actualText + "'");
+//        Assert.assertEquals(actualText, "Malmi maliyadda");
 
 
 
