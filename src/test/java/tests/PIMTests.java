@@ -55,15 +55,17 @@ public class PIMTests extends BaseTest {
         pim.addThirdName().sendKeys("maliyadda");
         driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
         pim.clickSave();
+
+
         //wait until loaded the page
-//        WebDriverWait wait = new WebDriverWait(driver, 300);
-//        WebElement nameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
-//            By.xpath("//h6[contains(@class, '--strong')]")
-//        ));
-//
-//        String actualText = nameElement.getText();
-//        System.out.println("Actual name retrieved: '" + actualText + "'");
-//        Assert.assertEquals(actualText, "Malmi maliyadda");
+        WebDriverWait wait = new WebDriverWait(driver, 300);
+        WebElement nameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+            By.xpath("//h6[contains(@class, '--strong')]")
+        ));
+
+        String actualText = nameElement.getText();
+        System.out.println("Actual name retrieved: '" + actualText + "'");
+        Assert.assertEquals(actualText, "Malmi maliyadda");
 
 
 
