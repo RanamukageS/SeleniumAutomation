@@ -46,13 +46,6 @@ jobs:
       - name: Generate Maven Surefire Report
         run: mvn surefire-report:report
 
-      - name: Upload TestNG HTML Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: testng-html-report
-          path: target/surefire-reports/
-
       - name: Upload Maven Surefire Report
         if: always()
         uses: actions/upload-artifact@v4
