@@ -28,7 +28,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2
 
-          # ✅ Install Google Chrome (required for Selenium)
       - name: Install Chrome
         run: |
           sudo apt-get update
@@ -37,6 +36,9 @@ jobs:
           echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
+
+      - name: Run tests
+        run: mvn clean test
 
       - name: Upload TestNG HTML Report
         if: always()
@@ -53,6 +55,6 @@ jobs:
           path: screenshots/
           if-no-files-found: ignore
 
-      - name: Install dependencies and run tests
-        run: mvn clean test
-
+      - name: List screenshot files
+        if: always()
+        run: ls -R screenshots || echo "No screenshots found"
