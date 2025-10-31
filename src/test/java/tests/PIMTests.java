@@ -38,16 +38,16 @@ public class PIMTests extends BaseTest {
     public void addEmpDetails(){
         adminPageObjects.enterRole();
         driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
-        pim.clickPIM();
+        pimObjects.clickPIM();
         driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
-        pim.PIMSelectedTab();
-        pim.clickAddEmployee();
+        pimObjects.PIMSelectedTab();
+        pimObjects.clickAddEmployee();
         driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
-        pim.addFirstName().sendKeys("Malmi");
-        pim.addSecondName().sendKeys("Nayana");
-        pim.addThirdName().sendKeys("maliyadda");
+        pimObjects.addFirstName().sendKeys("Malmi");
+        pimObjects.addSecondName().sendKeys("Nayana");
+        pimObjects.addThirdName().sendKeys("maliyadda");
         driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
-        pim.clickSave();
+        pimObjects.clickSave();
 
 
         //wait until loaded the page

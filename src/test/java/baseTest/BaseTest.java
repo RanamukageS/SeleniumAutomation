@@ -9,7 +9,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.*;
 import pom.AdminPageObjects;
 import pom.LoginData;
-import pom.PIM;
+import pom.PIMObjects;
+import pom.TimeObjects;
 import utils.ConfigReader;
 
 import java.util.concurrent.TimeUnit;
@@ -20,7 +21,8 @@ public class BaseTest {
     protected LoginData login_data;
     protected AdminPageObjects adminPageObjects;
     protected LoginData loginData;
-    protected PIM pim;
+    protected PIMObjects pimObjects;
+    protected TimeObjects timeObjects;
 
     public WebDriver getDriver() {
         return driver;
@@ -84,7 +86,8 @@ public class BaseTest {
 
         login_data = new LoginData(driver);
         adminPageObjects = new AdminPageObjects(driver);
-        pim = new PIM(driver);
+        pimObjects = new PIMObjects(driver);
+        timeObjects = new TimeObjects(driver);
 
 
         String username = ConfigReader.getProperty("username");

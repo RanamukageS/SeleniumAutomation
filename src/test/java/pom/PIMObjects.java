@@ -4,10 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PIM {
+public class PIMObjects {
     private WebDriver driver = null;
 
-    public PIM(WebDriver driver) {
+    public PIMObjects(WebDriver driver) {
         this.driver = driver;
     }
 
