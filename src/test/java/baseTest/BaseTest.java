@@ -6,8 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 import pom.AdminPageObjects;
 import pom.LoginData;
 import pom.PIM;
@@ -27,21 +26,42 @@ public class BaseTest {
         return driver;
     }
 
-    @BeforeTest
-    public void browserSetUp(){
-        String browser = ConfigReader.getProperty("browser");
+    @BeforeMethod(alwaysRun = true)
+    public void browserSetUp() {
+        //String browser = ConfigReader.getProperty("browser");
 
-        switch(browser.toLowerCase()){
+        String browser = ConfigReader.getProperty("browser");
+        if (browser == null) {
+            browser = "chrome";
+        }
+
+        switch(browser.toLowerCase()) {
             case "chrome":
-                WebDriverManager.chromedriver().setup();
-                // driver = new ChromeDriver();
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--headless=new");  // Use new headless mode (Chrome 109+)
-                options.addArguments("--no-sandbox");
-                options.addArguments("--disable-dev-shm-usage");
-                options.addArguments("--window-size=1920,1080");
-                driver = new ChromeDriver(options);
+                try {
+                    WebDriverManager.chromedriver().setup();
+                    ChromeOptions options = new ChromeOptions();
+
+                    if (System.getenv("CI") != null) {
+                        options.addArguments("--headless=new");
+                        options.addArguments("--no-sandbox");
+                        options.addArguments("--disable-dev-shm-usage");
+                        options.addArguments("--disable-gpu");
+                        options.addArguments("--window-size=1920,1080");
+                        options.addArguments("--remote-allow-origins=*");
+                    }
+
+                    // Initialize driver regardless of CI environment
+                    driver = new ChromeDriver(options);
+                    driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+                    System.out.println("✅ ChromeDriver initialized successfully");
+                } catch (Exception e) {
+                    System.out.println("❌ Error initializing ChromeDriver: " + e.getMessage());
+                    e.printStackTrace();
+                    throw e;
+                }
                 break;
+
+
 
             case "firefox" :
                 WebDriverManager.firefoxdriver().setup();
@@ -54,8 +74,11 @@ public class BaseTest {
                 throw new IllegalArgumentException("browser is not supported" + browser);
         }
 
-        driver.manage().window().maximize();
+        if (System.getenv("CI") == null) {
+            driver.manage().window().maximize();
+        }
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        
         String url = ConfigReader.getProperty("url");
         driver.get(url);
 
@@ -73,9 +96,10 @@ public class BaseTest {
 
     }
 
-    @AfterTest
-    public void browserClose(){
-       // driver.close();
+    @AfterMethod(alwaysRun = true)
+    public void browserClose() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
-
 }

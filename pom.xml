@@ -25,8 +25,6 @@
             <artifactId>webdrivermanager</artifactId>
             <version>5.5.2</version>
         </dependency>
-
-
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -38,6 +36,12 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <version>3.8.1</version>
         </dependency>
+
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-testng</artifactId>
+                <version>2.27.0</version>
+            </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
@@ -91,7 +95,17 @@
             <version>5.0.9</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.42</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.5.4</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot -->
         <dependency>
             <groupId>ru.yandex.qatools.ashot</groupId>
@@ -99,4 +113,51 @@
             <version>1.5.4</version>
         </dependency>
     </dependencies>
+    <build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.13.0</version>
+            <configuration>
+                <fork>true</fork>
+                <compilerArgs>
+                    <arg>--add-opens</arg>
+                    <arg>jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                    <arg>--add-opens</arg>
+                    <arg>jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                    <arg>--add-opens</arg>
+                    <arg>jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+                    <arg>--add-opens</arg>
+                    <arg>jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                    <arg>--add-opens</arg>
+                    <arg>jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                    <arg>--add-opens</arg>
+                    <arg>jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                    <arg>--add-opens</arg>
+                    <arg>jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
+                    <arg>--add-opens</arg>
+                    <arg>jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                    <arg>--add-opens</arg>
+                    <arg>jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                    <arg>--add-opens</arg>
+                    <arg>jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+                </compilerArgs>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>2.12.0</version>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>3.1.2</version>
+            <configuration>
+                <outputDirectory>${project.build.directory}/surefire-report</outputDirectory>
+            </configuration>
+        </plugin>
+    </plugins>
+    </build>
 </project>

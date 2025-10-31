@@ -1,7 +1,6 @@
 package utils;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 public class ConfigReader {
@@ -9,12 +8,14 @@ public class ConfigReader {
     private  static Properties properties;
 
     public static void loadProperties() {
-        try {
-            FileInputStream fis = new FileInputStream("/Users/shashikaranamukage/Documents/Code/OrangeHRM/OrangeHRM/src/test/java/resources/Data/config.properties");
+          String fileName = "config.properties";
+        try(InputStream is = ConfigReader.class.getClassLoader().getResourceAsStream(fileName);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             properties = new Properties();
-            properties.load(fis);
-        } catch (IOException e) {
-            throw new RuntimeException("Could not load config.properties", e);
+            properties.load(reader);
+
+        }catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
