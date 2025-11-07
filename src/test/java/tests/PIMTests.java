@@ -7,7 +7,7 @@ import utils.RetryAnalyzer;
 
 import java.util.concurrent.TimeUnit;
 
-@Listeners({utils.ExtentTestNGListner.class, utils.TestListner.class })
+@Listeners({utils.ExtentTestNGListner.class, utils.TestListner.class})
 public class PIMTests extends BaseTest {
 
 //@Test
@@ -34,38 +34,19 @@ public class PIMTests extends BaseTest {
 //
 //    }
 
-@Test(retryAnalyzer = RetryAnalyzer.class)
-    public void addEmpDetails(){
+    @Test(retryAnalyzer = RetryAnalyzer.class)
+    public void addEmpDetails() {
         adminPageObjects.enterRole();
         driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
-        pim.clickPIM();
+        pimObjects.clickPIM();
         driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
-        pim.PIMSelectedTab();
-        pim.clickAddEmployee();
+        pimObjects.PIMSelectedTab();
+        pimObjects.clickAddEmployee();
         driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
-        pim.addFirstName().sendKeys("Malmi");
-        pim.addSecondName().sendKeys("Nayana");
-        pim.addThirdName().sendKeys("maliyadda");
+        pimObjects.addFirstName().sendKeys("Malmi");
+        pimObjects.addSecondName().sendKeys("Nayana");
+        pimObjects.addThirdName().sendKeys("maliyadda");
         driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
-        pim.clickSave();
-
-
-        //wait until loaded the page
-//        WebDriverWait wait = new WebDriverWait(driver, 300);
-//        WebElement nameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
-//            By.xpath("//h6[contains(@class, '--strong')]")
-//        ));
-//
-//        String actualText = nameElement.getText();
-//        System.out.println("Actual name retrieved: '" + actualText + "'");
-//        Assert.assertEquals(actualText, "Malmi maliyadda");
-
-
-
-
+        pimObjects.clickSave();
     }
-
-
-
-
 }

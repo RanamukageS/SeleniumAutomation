@@ -34,10 +34,14 @@ public class ExcelUtil {
     private static Object getCellValue(Cell cell) {
         if (cell == null) return "";
         switch (cell.getCellType()) {
-            case STRING: return cell.getStringCellValue();
-            case NUMERIC: return cell.getNumericCellValue();
-            case BOOLEAN: return cell.getBooleanCellValue();
-            default: return "";
+            case STRING:
+                return cell.getStringCellValue();
+            case NUMERIC:
+                return cell.getNumericCellValue();
+            case BOOLEAN:
+                return cell.getBooleanCellValue();
+            default:
+                return "";
         }
     }
 }
