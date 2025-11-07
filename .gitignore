@@ -35,5 +35,11 @@ build/
 ### VS Code ###
 .vscode/
 
+### temp files ###
+screenshots/
+allure-results/
+.idea/
+
+
 ### Mac OS ###
 .DS_Store

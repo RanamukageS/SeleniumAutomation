@@ -7,7 +7,7 @@ import utils.RetryAnalyzer;
 
 import java.util.concurrent.TimeUnit;
 
-@Listeners({utils.ExtentTestNGListner.class, utils.TestListner.class })
+@Listeners({utils.ExtentTestNGListner.class, utils.TestListner.class})
 public class PIMTests extends BaseTest {
 
 //@Test
@@ -34,8 +34,8 @@ public class PIMTests extends BaseTest {
 //
 //    }
 
-@Test(retryAnalyzer = RetryAnalyzer.class)
-    public void addEmpDetails(){
+    @Test(retryAnalyzer = RetryAnalyzer.class)
+    public void addEmpDetails() {
         adminPageObjects.enterRole();
         driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
         pimObjects.clickPIM();
@@ -48,24 +48,5 @@ public class PIMTests extends BaseTest {
         pimObjects.addThirdName().sendKeys("maliyadda");
         driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
         pimObjects.clickSave();
-
-
-        //wait until loaded the page
-//        WebDriverWait wait = new WebDriverWait(driver, 300);
-//        WebElement nameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
-//            By.xpath("//h6[contains(@class, '--strong')]")
-//        ));
-//
-//        String actualText = nameElement.getText();
-//        System.out.println("Actual name retrieved: '" + actualText + "'");
-//        Assert.assertEquals(actualText, "Malmi maliyadda");
-
-
-
-
     }
-
-
-
-
 }

@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Listeners({utils.ExtentTestNGListner.class, utils.TestListner.class })
+@Listeners({utils.ExtentTestNGListner.class, utils.TestListner.class})
 public class AdminPageTests extends BaseTest {
 
 
@@ -27,9 +27,9 @@ public class AdminPageTests extends BaseTest {
 
         //user check
         List<WebElement> rows = driver.findElements(By.xpath("//div[@class = 'oxd-table-body']"));
-        for(WebElement row : rows){
+        for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
-            if(cells.size() < 6){
+            if (cells.size() < 6) {
                 continue;
             }
             String col1 = cells.get(1).getText();
@@ -46,23 +46,23 @@ public class AdminPageTests extends BaseTest {
     }
 
     @Test
-    public void deleteEmpStatus(){
+    public void deleteEmpStatus() {
         driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
         adminPageObjects.enterRole();
         adminPageObjects.clickAdmin();
         driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
         adminPageObjects.clickJobDD();
         adminPageObjects.clickEmpStatus();
-        driver.manage().timeouts().implicitlyWait(25,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
         adminPageObjects.clickCheckBoxEmpStatus();
-        driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         adminPageObjects.clickDeleteAction();
-        driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         adminPageObjects.clickDelete();
     }
 
     @Test
-    public void editWorkShifDetails(){
+    public void editWorkShifDetails() {
         adminPageObjects.enterRole();
         adminPageObjects.clickAdmin();
         adminPageObjects.clickJobDD();
@@ -78,26 +78,25 @@ public class AdminPageTests extends BaseTest {
         adminPageObjects.selectWorkMinutesTo().sendKeys("30");
         adminPageObjects.clickPmTo();
         String durationPerDay = adminPageObjects.checkDurationPerDay().getText();
-        Assert.assertEquals(durationPerDay,"8.00");
-        driver.manage().timeouts().implicitlyWait(400,TimeUnit.SECONDS);
+        Assert.assertEquals(durationPerDay, "8.00");
+        driver.manage().timeouts().implicitlyWait(400, TimeUnit.SECONDS);
         adminPageObjects.clickSaveDetails();
     }
 
     @Test
-    public void editGeneralInformation(){
+    public void editGeneralInformation() {
         adminPageObjects.enterRole();
         adminPageObjects.clickAdmin();
         adminPageObjects.clickJobDD();
-        driver.manage().timeouts().implicitlyWait(400,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(400, TimeUnit.SECONDS);
         adminPageObjects.clickOrganizationTab();
-        driver.manage().timeouts().implicitlyWait(400,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(400, TimeUnit.SECONDS);
         adminPageObjects.clickGeneralInfor();
-        driver.manage().timeouts().implicitlyWait(400,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(400, TimeUnit.SECONDS);
         adminPageObjects.clickOnEditMode();
-        driver.manage().timeouts().implicitlyWait(400,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(400, TimeUnit.SECONDS);
         adminPageObjects.PostalCode();
     }
-
 
 
 }

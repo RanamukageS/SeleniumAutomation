@@ -13,43 +13,43 @@ public class TimeObjects {
         this.driver = driver;
     }
 
-    public void clickSearchTab(){
+    public void clickSearchTab() {
         driver.findElements(By.xpath("//input[@class='oxd-input oxd-input--active']")).get(0).sendKeys("Time");
     }
 
-    public void clickTime(){
+    public void clickTime() {
         driver.findElement(By.xpath("//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name']")).click();
     }
 
-    public void clickTimeSheets(){
+    public void clickTimeSheets() {
         driver.findElements(By.xpath("//i[@class='oxd-icon bi-chevron-down']")).get(0).click();
     }
 
-    public void clickTabTimesheet(){
+    public void clickTabTimesheet() {
         driver.findElement(By.xpath("//a[text() = 'My Timesheets']")).click();
     }
 
-    public void selectTimeTab(){
+    public void selectTimeTab() {
         driver.findElement(By.xpath("//i[@class = 'oxd-icon bi-calendar oxd-date-input-icon']")).click();
     }
 
-    public void clickMonthDD(){
+    public void clickMonthDD() {
         driver.findElements(By.xpath("//p[@class = 'oxd-text oxd-text--p']")).get(0).click();
     }
 
-    public void selectMonth(){
+    public void selectMonth() {
         driver.findElement(By.xpath("//li[contains(text(), 'May')]")).click();
     }
 
-    public void clickAYear(){
+    public void clickAYear() {
         driver.findElements(By.xpath("//p[@class= 'oxd-text oxd-text--p']")).get(1).click();
     }
 
-    public void selectYear(){
+    public void selectYear() {
         driver.findElement(By.xpath("//li[contains(text(), '2024')]")).click();
     }
 
-    public void selectDate(){
+    public void selectDate() {
         driver.findElement(By.xpath("//div[contains(text(), '23')]")).click();
     }
 
@@ -57,28 +57,25 @@ public class TimeObjects {
 //        return driver.findElement(By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary']"));
 //    }
 
-    public void createTimesheetButton(){
+    public void createTimesheetButton() {
         driver.findElement(By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary']")).click();
 
     }
 
-    public void clickEditTimesheet(){
+    public void clickEditTimesheet() {
         //driver.findElement(By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--ghost']")).click();
         //driver.findElement  (By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--ghost']")).click();
-          driver.findElement(By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--ghost']")).click();
+        driver.findElement(By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--ghost']")).click();
     }
 
 
-    public WebElement projDD(){
-      return driver.findElement(By.xpath("//input[@placeholder = 'Type for hints...']"));
-        }
+    public WebElement projDD() {
+        return driver.findElement(By.xpath("//input[@placeholder = 'Type for hints...']"));
+    }
 
-    public void clickActivity(){
+    public void clickActivity() {
         WebElement dd = driver.findElement(By.xpath("//div[@class = 'oxd-select-text-input']"));
     }
-
-
-
 
 
 }

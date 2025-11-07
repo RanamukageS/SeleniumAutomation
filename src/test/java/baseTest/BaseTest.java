@@ -37,7 +37,7 @@ public class BaseTest {
             browser = "chrome";
         }
 
-        switch(browser.toLowerCase()) {
+        switch (browser.toLowerCase()) {
             case "chrome":
                 try {
                     WebDriverManager.chromedriver().setup();
@@ -54,7 +54,7 @@ public class BaseTest {
 
                     // Initialize driver regardless of CI environment
                     driver = new ChromeDriver(options);
-                    driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+                    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                     System.out.println("✅ ChromeDriver initialized successfully");
                 } catch (Exception e) {
                     System.out.println("❌ Error initializing ChromeDriver: " + e.getMessage());
@@ -64,8 +64,7 @@ public class BaseTest {
                 break;
 
 
-
-            case "firefox" :
+            case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions option = new FirefoxOptions();
                 option.setBinary("/Applications/Firefox.app/Contents/MacOS/firefox");
@@ -80,7 +79,7 @@ public class BaseTest {
             driver.manage().window().maximize();
         }
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        
+
         String url = ConfigReader.getProperty("url");
         driver.get(url);
 
@@ -101,8 +100,8 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void browserClose() {
-        if (driver != null) {
-            driver.quit();
-        }
+//        if (driver != null) {
+//            driver.quit();
+//        }
     }
 }
