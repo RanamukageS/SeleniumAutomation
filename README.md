@@ -67,7 +67,7 @@ Test Report : <img width="1440" height="831" alt="image" src="https://github.com
 
 
 ---
-Would you like me to:  
-✅ Add **badges** for CI/CD status (GitHub Actions) and test coverage?  
+
+ 
 
 
