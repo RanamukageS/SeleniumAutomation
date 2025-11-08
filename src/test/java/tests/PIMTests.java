@@ -34,15 +34,12 @@ public class PIMTests extends BaseTest {
 //
 //    }
 
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = {"Smoke", "Regression"},retryAnalyzer = RetryAnalyzer.class)
     public void addEmpDetails() {
         adminPageObjects.enterRole();
-        driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
         pimObjects.clickPIM();
-        driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
         pimObjects.PIMSelectedTab();
         pimObjects.clickAddEmployee();
-        driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
         pimObjects.addFirstName().sendKeys("Malmi");
         pimObjects.addSecondName().sendKeys("Nayana");
         pimObjects.addThirdName().sendKeys("maliyadda");

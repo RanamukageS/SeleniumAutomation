@@ -100,8 +100,8 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void browserClose() {
-//        if (driver != null) {
-//            driver.quit();
-//        }
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }

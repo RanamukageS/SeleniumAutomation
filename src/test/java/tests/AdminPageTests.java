@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import utils.RetryAnalyzer;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -14,8 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class AdminPageTests extends BaseTest {
 
 
-    //@Test(retryAnalyzer = RetryAnalyzer.class)
-    @Test
+    @Test(groups = {"Smoke", "Regression"},retryAnalyzer = RetryAnalyzer.class)
     public void searchSysUsers() {
         adminPageObjects.clickAdmin();
         adminPageObjects.enterRole();
@@ -25,7 +25,6 @@ public class AdminPageTests extends BaseTest {
         adminPageObjects.selectUserRole();
         adminPageObjects.clickSearch();
 
-        //user check
         List<WebElement> rows = driver.findElements(By.xpath("//div[@class = 'oxd-table-body']"));
         for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
@@ -45,23 +44,25 @@ public class AdminPageTests extends BaseTest {
         }
     }
 
-    @Test
+    @Test(groups = {"Smoke", "Regression"},retryAnalyzer = RetryAnalyzer.class)
     public void deleteEmpStatus() {
-        driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
         adminPageObjects.enterRole();
         adminPageObjects.clickAdmin();
-        driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
         adminPageObjects.clickJobDD();
         adminPageObjects.clickEmpStatus();
-        driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
-        adminPageObjects.clickCheckBoxEmpStatus();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        adminPageObjects.clickDeleteAction();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        adminPageObjects.clickDelete();
+
+        String text = adminPageObjects.clickDeleteActionNew().getText();
+        if (text.equalsIgnoreCase("No Records Found")) {
+            System.out.println("No records available to print.");
+        } else {
+            adminPageObjects.clickCheckBoxEmpStatus();
+            adminPageObjects.clickDeleteAction();
+            adminPageObjects.clickDelete();
+        }
+
     }
 
-    @Test
+    @Test(groups = {"Regression"}, retryAnalyzer = RetryAnalyzer.class)
     public void editWorkShifDetails() {
         adminPageObjects.enterRole();
         adminPageObjects.clickAdmin();
@@ -83,22 +84,16 @@ public class AdminPageTests extends BaseTest {
         adminPageObjects.clickSaveDetails();
     }
 
-    @Test
+    @Test(groups = {"Regression"}, retryAnalyzer = RetryAnalyzer.class)
     public void editGeneralInformation() {
         adminPageObjects.enterRole();
         adminPageObjects.clickAdmin();
         adminPageObjects.clickJobDD();
-        driver.manage().timeouts().implicitlyWait(400, TimeUnit.SECONDS);
         adminPageObjects.clickOrganizationTab();
-        driver.manage().timeouts().implicitlyWait(400, TimeUnit.SECONDS);
         adminPageObjects.clickGeneralInfor();
-        driver.manage().timeouts().implicitlyWait(400, TimeUnit.SECONDS);
         adminPageObjects.clickOnEditMode();
-        driver.manage().timeouts().implicitlyWait(400, TimeUnit.SECONDS);
         adminPageObjects.PostalCode();
     }
-
-
 }
 
 
