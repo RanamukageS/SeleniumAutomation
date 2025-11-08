@@ -34,7 +34,7 @@ public class PIMTests extends BaseTest {
 //
 //    }
 
-    @Test(groups = {"Smoke", "Regression"},retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = {"Smoke"},retryAnalyzer = RetryAnalyzer.class)
     public void addEmpDetails() {
         adminPageObjects.enterRole();
         pimObjects.clickPIM();

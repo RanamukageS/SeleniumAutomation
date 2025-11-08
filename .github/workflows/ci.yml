@@ -61,7 +61,7 @@ jobs:
           fi
 
       - name: Run tests
-        run: mvn clean test -Dgroups=$group
+        run: mvn clean test -Dgroups=${{ env.group }}
 
       - name: Generate Maven Surefire Report
         run: mvn surefire-report:report

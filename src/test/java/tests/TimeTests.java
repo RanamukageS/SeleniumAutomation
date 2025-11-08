@@ -14,7 +14,7 @@ import java.util.List;
 @Listeners({utils.ExtentTestNGListner.class, utils.TestListner.class})
 public class TimeTests extends BaseTest {
 
-    @Test(groups = {"Smoke", "Regression"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = {"Smoke"}, retryAnalyzer = RetryAnalyzer.class)
     public void resetEmployeeTimeSheet() {
         adminPageObjects.enterRole();
         timeObjects.clickSearchTab();
