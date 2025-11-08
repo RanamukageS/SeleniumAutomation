@@ -73,28 +73,3 @@ jobs:
         if: always()
         run: ls -R screenshots || echo "No screenshots found"
 
-      - name: Send test report via email
-        if: always()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          subject: "Selenium Test Report - ${{ github.run_number }}"
-          to: ${{ secrets.MAIL_TO }}
-          from: "GitHub Actions <${{ secrets.MAIL_USERNAME }}>"
-          body: |
-            Hello Tester,
-
-            The latest Selenium test run has completed.
-            Repository: ${{ github.repository }}
-            Run Number: ${{ github.run_number }}
-            Triggered by: ${{ github.actor }}
-
-            Please find the attached report.
-
-            Thanks,
-            GitHub Actions
-          attachments: |
-            target/surefire-reports/index.html
