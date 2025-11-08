@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="MyTestSuite">
-<!--    <listeners>-->
-<!--        <listener class-name="utils.screenshotTestListner" />-->
-<!--    </listeners>-->
-<!--    <listeners>-->
-<!--        <listener class-name="utils.ExtentTestNGListener"/>-->
-<!--    </listeners>-->
+<suite name="MyTestSuite" parallel="tests" thread-count="2">
     <listeners>
-        <listener class-name="utils.TestListner" />
+        <listener class-name="utils.TestListner"/>
     </listeners>
-    <listeners>
-        <listener class-name="utils.RetryAnalyzer" />
-    </listeners>
-    <test name="SampleTest">
+    <!-- Smoke Test Suite -->
+    <test name="SmokeTests">
+        <groups>
+            <run>
+                <include name="Smoke"/>
+            </run>
+        </groups>
         <classes>
             <class name="tests.AdminPageTests"/>
+            <class name="tests.PIMTests"/>
+            <class name="tests.TimeTests"/>
+        </classes>
+    </test>
+    <!-- Regression Test Suite -->
+    <test name="RegressionTests">
+        <groups>
+            <run>
+                <include name="Regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.AdminPageTests"/>
+            <class name="tests.PIMTests"/>
+            <class name="tests.TimeTests"/>
         </classes>
     </test>
 </suite>

@@ -6,10 +6,9 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    # Run every day at midnight UTC
+    # Run regression every day at midnight UTC
     - cron: '30 18 * * *'
-    # Run every day at 12:30 PM IST (07:00 UTC)
-    - cron: '0 7 * * *'
+  workflow_dispatch: # manual trigger for smoke tests
 
 jobs:
   test:
@@ -43,7 +42,14 @@ jobs:
           sudo apt-get install -y google-chrome-stable
 
       - name: Run tests
-        run: mvn clean test
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "Running Smoke Tests"
+            mvn clean test -Dgroups=Smoke
+          else
+            echo "Running Regression Tests"
+            mvn clean test -Dgroups=Regression
+          fi
 
       - name: Generate Maven Surefire Report
         run: mvn surefire-report:report
@@ -56,7 +62,7 @@ jobs:
           path: target/surefire-reports/
 
       - name: Upload Screenshots
-        if: always() # ensures it runs even if tests fail
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-screenshots
@@ -68,7 +74,7 @@ jobs:
         run: ls -R screenshots || echo "No screenshots found"
 
       - name: Send test report via email
-        if: always()  # ensures it runs even if tests fail
+        if: always()
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -92,4 +98,3 @@ jobs:
             GitHub Actions
           attachments: |
             target/surefire-reports/index.html
-

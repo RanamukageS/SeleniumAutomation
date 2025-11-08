@@ -61,8 +61,15 @@ public class AdminPageObjects {
     }
 
     public void clickCheckBoxEmpStatus() {
-        WebElement checkBox = driver.findElements(By.xpath("//i[@class='oxd-icon bi-check oxd-checkbox-input-icon']")).get(1);
+        WebElement checkBox = driver.findElements(By.xpath("//i[@class = 'oxd-icon bi-check oxd-checkbox-input-icon']")).get(0);
         checkBox.click();
+    }
+
+    public WebElement clickDeleteActionNew(){
+        WebElement element = driver.findElement(By.xpath(
+                "//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span[@class='oxd-text oxd-text--span']"
+        ));
+        return element;
     }
 
     public void clickDeleteAction() {

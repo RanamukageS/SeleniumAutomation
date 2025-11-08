@@ -73,9 +73,16 @@ public class TimeObjects {
         return driver.findElement(By.xpath("//input[@placeholder = 'Type for hints...']"));
     }
 
-    public void clickActivity() {
-        WebElement dd = driver.findElement(By.xpath("//div[@class = 'oxd-select-text-input']"));
+    public WebElement clickActivity() {
+       return   driver.findElement(By.xpath("//div[@class = 'oxd-select-text-input']"));
     }
 
 
+    public void addTimeto20Th(){
+        driver.findElements(By.xpath("//input[@class = 'oxd-input oxd-input--active']")).get(1).sendKeys("1");
+    }
+
+    public void clickReset(){
+        driver.findElements(By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--ghost']")).get(1).click();
+    }
 }
