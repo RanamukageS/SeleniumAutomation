@@ -5,15 +5,8 @@
         <listener class-name="utils.TestListner"/>
     </listeners>
 
-    <!-- All test classes here -->
+    <!-- All test classes -->
     <test name="AllTests">
-        <groups>
-            <run>
-                <!-- Group will be selected at runtime via -Dgroups -->
-                <include name="Smoke"/>
-                <include name="Regression"/>
-            </run>
-        </groups>
         <classes>
             <class name="tests.AdminPageTests"/>
             <class name="tests.PIMTests"/>
