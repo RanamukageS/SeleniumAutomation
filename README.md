@@ -18,7 +18,8 @@ It automates key test scenarios to ensure system reliability, improves testing e
 - 📸 **Failed Screenshot Capture** – Automatically captures screenshots when a test fails  
 - ♻️ **Retry Mechanism** – Re-runs failed tests for better reliability  
 - 📊 **HTML Reports** – Integrated with **Extent Reports**  
-- 🕒 **Scheduled Execution** – Runs automatically at midnight or can be triggered manually  
+- 🕒 **Scheduled Execution** – Runs automatically at midnight or can be triggered manually
+- ⚙️ Manual & Separate Execution – Can be run manually as Smoke or Regression tests as needed
 - 🧩 **Modular Design** – Easy to extend with new test cases or modules  
 
 ---
