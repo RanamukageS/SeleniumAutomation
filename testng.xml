@@ -7,6 +7,12 @@
 
     <!-- All test classes -->
     <test name="AllTests">
+        <groups>
+            <run>
+                <!-- This will dynamically pick up the group passed from Maven -->
+                <include name="${groups}"/>
+            </run>
+        </groups>
         <classes>
             <class name="tests.AdminPageTests"/>
             <class name="tests.PIMTests"/>
