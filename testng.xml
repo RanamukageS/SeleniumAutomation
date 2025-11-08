@@ -4,23 +4,13 @@
     <listeners>
         <listener class-name="utils.TestListner"/>
     </listeners>
-    <!-- Smoke Test Suite -->
-    <test name="SmokeTests">
+
+    <!-- All test classes here -->
+    <test name="AllTests">
         <groups>
             <run>
+                <!-- Group will be selected at runtime via -Dgroups -->
                 <include name="Smoke"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="tests.AdminPageTests"/>
-            <class name="tests.PIMTests"/>
-            <class name="tests.TimeTests"/>
-        </classes>
-    </test>
-    <!-- Regression Test Suite -->
-    <test name="RegressionTests">
-        <groups>
-            <run>
                 <include name="Regression"/>
             </run>
         </groups>

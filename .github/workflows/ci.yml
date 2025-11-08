@@ -8,7 +8,7 @@ on:
   schedule:
     # Run regression every day at midnight UTC
     - cron: '30 18 * * *'
-  workflow_dispatch: # manual trigger for smoke tests
+  workflow_dispatch: # manual trigger for smoke or regression tests
     inputs:
       testType:
         description: 'Choose which tests to run'
@@ -50,8 +50,18 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
 
+      - name: Determine test group
+        id: set_group
+        run: |
+          # If triggered by schedule, default to Regression
+          if [ "${{ github.event_name }}" == "schedule" ]; then
+            echo "group=Regression" >> $GITHUB_ENV
+          else
+            echo "group=${{ github.event.inputs.testType }}" >> $GITHUB_ENV
+          fi
+
       - name: Run tests
-        run: mvn clean test -Dgroups=${{ github.event.inputs.testType }}
+        run: mvn clean test -Dgroups=$GROUP
 
       - name: Generate Maven Surefire Report
         run: mvn surefire-report:report
@@ -74,4 +84,3 @@ jobs:
       - name: List screenshot files
         if: always()
         run: ls -R screenshots || echo "No screenshots found"
-
