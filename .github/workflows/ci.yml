@@ -56,12 +56,20 @@ jobs:
           # If triggered by schedule, default to Regression
           if [ "${{ github.event_name }}" == "schedule" ]; then
             echo "group=Regression" >> $GITHUB_ENV
+            echo "::notice::Running REGRESSION tests (triggered by scheduled run)"
+            echo "🔄 Test Group: Regression"
           else
             echo "group=${{ github.event.inputs.testType }}" >> $GITHUB_ENV
+            echo "::notice::Running ${{ github.event.inputs.testType }} tests (triggered by ${{ github.event_name }})"
+            echo "🔄 Test Group: ${{ github.event.inputs.testType }}"
           fi
+          echo "Event Type: ${{ github.event_name }}"
+          echo "Selected Test Group: ${{ env.group }}"
 
       - name: Run tests
-        run: mvn clean test -Dgroups=${{ env.group }}
+        run: |
+          echo "🚀 Executing tests for group: ${{ env.group }}"
+          mvn clean test -Dgroups=${{ env.group }}
 
       - name: Generate Maven Surefire Report
         run: mvn surefire-report:report
