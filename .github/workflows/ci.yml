@@ -69,10 +69,7 @@ jobs:
       - name: Run tests
         run: |
           echo "🚀 Executing tests for group: ${{ env.group }}"
-          mvn clean test -Dgroups=${{ env.group }}
-
-      - name: Generate Maven Surefire Report
-        run: mvn surefire-report:report
+          mvn clean test -Dgroups=${{ env.group }} surefire-report:report-only
 
       - name: Upload TestNG HTML Report
         if: always()
